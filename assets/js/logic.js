@@ -10,17 +10,20 @@
 
 var startButton = document.querySelector('#start');
 var startScreen = document.querySelector('#start-screen');
-var questionScreen = document.querySelector('#questions')
+var questionScreen = document.querySelector('#questions');
+var remainingTime = 75;
+var timer = document.querySelector('#time');
 
 startButton.addEventListener('click', function () {
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
+  timer.textContent = remainingTime;
 })
 
-// Click the start button:
-// Landing page goes away
-// Timer starts
-// The first question appears (with its answers)
+//  Click the start button:
+//  Landing page goes away
+// TODO Timer starts
+// TODO The first question appears (with its answers)
 
 // For each question:
 // User clicks an answer
