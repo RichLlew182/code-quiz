@@ -8,6 +8,14 @@
 // Explanation of the quiz
 // Start button
 
+var startButton = document.querySelector('#start');
+var startScreen = document.querySelector('#start-screen')
+
+startButton.addEventListener('click', function () {
+  startScreen.classList.add('hide')
+
+})
+
 // Click the start button:
 // Landing page goes away
 // Timer starts
