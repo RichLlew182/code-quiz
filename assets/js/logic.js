@@ -9,11 +9,12 @@
 // Start button
 
 var startButton = document.querySelector('#start');
-var startScreen = document.querySelector('#start-screen')
+var startScreen = document.querySelector('#start-screen');
+var questionScreen = document.querySelector('#questions')
 
 startButton.addEventListener('click', function () {
   startScreen.classList.add('hide')
-
+  questionScreen.classList.toggle('hide');
 })
 
 // Click the start button:
