@@ -22,10 +22,23 @@ var timer = document.querySelector('#time');
 //  Landing page goes away
 
 startButton.addEventListener('click', function () {
+
+  timer.textContent = remainingTime;
+
+  var timerInterval = setInterval(function () {
+    remainingTime--;
+    timer.textContent = remainingTime;
+
+    if (remainingTime === 0) {
+      clearInterval(timerInterval);
+    }
+
+  }, 1000)
+
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
-  timer.textContent = remainingTime;
   questionTitle.innerHTML = questionOne.question;
+
 
 })
 
