@@ -32,10 +32,30 @@ for (var i = 0; i < questionsOne.answers.length; i++) {
 
   var answerButton = document.createElement('button');
   answerButton.innerText = questionsOne.answers[i];
-  answerButton.setAttribute('id', 'answer-' + (i + 1))
+  answerButton.setAttribute('class', 'answers')
   choices.appendChild(answerButton);
 
+  console.log(answerButton);
+
+  if (answerButton.innerText === 'Richard') {
+    answerButton.setAttribute('id', 'correct');
+  }
 }
+
+var buttonAnswers = document.querySelectorAll('#choices button');
+console.log(buttonAnswers);
+
+buttonAnswers.forEach(function (button) {
+  button.addEventListener('click', function () {
+    if (button.id === 'correct') {
+      alert('You are correct')
+    } else {
+      alert('You are incorrect')
+    }
+  })
+});
+
+
 
 
 
