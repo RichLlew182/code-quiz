@@ -16,6 +16,7 @@ var choices = document.querySelector('#choices');
 var remainingTime = 75;
 var timer = document.querySelector('#time');
 
+
 //  Click the start button:
 //  Landing page goes away
 
@@ -23,7 +24,20 @@ startButton.addEventListener('click', function () {
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
   timer.textContent = remainingTime;
+  questionTitle.innerHTML = questionsOne.question;
+
 })
+
+for (var i = 0; i < questionsOne.answers.length; i++) {
+
+  var answerButton = document.createElement('button');
+  answerButton.innerText = questionsOne.answers[i];
+  answerButton.setAttribute('id', 'answer-' + (i + 1))
+  choices.appendChild(answerButton);
+
+}
+
+
 
 // TODO Timer starts
 // TODO The first question appears (with its answers)

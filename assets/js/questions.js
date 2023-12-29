@@ -1,3 +1,4 @@
-var questions = {
-  questionOne: 'what is your name?'
+var questionsOne = {
+  question: 'What is your name?',
+  answers: ['Richard', 'Katie', 'Michael', 'Andy']
 }
