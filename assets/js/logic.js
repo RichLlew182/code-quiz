@@ -13,6 +13,7 @@ var startScreen = document.querySelector('#start-screen');
 var questionScreen = document.querySelector('#questions');
 var questionTitle = document.querySelector('#question-title');
 var choices = document.querySelector('#choices');
+var feedback = document.querySelector('#feedback');
 var remainingTime = 75;
 var timer = document.querySelector('#time');
 
@@ -24,14 +25,14 @@ startButton.addEventListener('click', function () {
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
   timer.textContent = remainingTime;
-  questionTitle.innerHTML = questionsOne.question;
+  questionTitle.innerHTML = questionOne.question;
 
 })
 
-for (var i = 0; i < questionsOne.answers.length; i++) {
+for (var i = 0; i < questionOne.answers.length; i++) {
 
   var answerButton = document.createElement('button');
-  answerButton.innerText = questionsOne.answers[i];
+  answerButton.innerText = questionOne.answers[i];
   answerButton.setAttribute('class', 'answers')
   choices.appendChild(answerButton);
 
@@ -47,13 +48,14 @@ console.log(buttonAnswers);
 
 buttonAnswers.forEach(function (button) {
   button.addEventListener('click', function () {
+    feedback.classList.toggle('hide')
     if (button.id === 'correct') {
-      alert('You are correct')
+      feedback.innerText = 'Correct'
     } else {
-      alert('You are incorrect')
+      feedback.innerText = 'Wrong'
     }
   })
-});
+})
 
 
 
