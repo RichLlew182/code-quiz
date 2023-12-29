@@ -18,6 +18,7 @@ var endScreen = document.querySelector('#end-screen');
 var remainingTime = 75;
 var timer = document.querySelector('#time');
 var buttonAnswers = [];
+var timerInterval;
 
 
 //  Click the start button:
@@ -29,7 +30,7 @@ startButton.addEventListener('click', function () {
 
   // Timer starts
 
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     remainingTime--;
     timer.textContent = remainingTime;
 
@@ -40,11 +41,13 @@ startButton.addEventListener('click', function () {
 
   }, 1000)
 
+
   // The first question appears (with its answers)
 
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
-  firstQuestion()
+  firstQuestion();
+  return timerInterval;
 
 })
 
@@ -75,12 +78,16 @@ function firstQuestion() {
       if (button.innerText === 'Richard') {
         // If correct, tell them
         feedback.innerText = 'Correct';
-        secondQuestion();
+        setTimeout(function () {
+          secondQuestion();
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
         feedback.innerText = 'Wrong';
-        secondQuestion();
+        setTimeout(function () {
+          secondQuestion();
+        }, 1000)
       }
     })
   })
@@ -90,6 +97,7 @@ function firstQuestion() {
 function secondQuestion() {
 
   questionTitle.innerHTML = questionTwo.question;
+  feedback.classList.toggle('hide');
 
   for (var j = 0; j < questionTwo.answers.length; j++) {
     buttonAnswers[j].remove()
@@ -110,13 +118,19 @@ function secondQuestion() {
     button.addEventListener('click', function () {
       if (button.innerText === '35') {
         // If correct, tell them
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Correct';
-        thirdQuestion();
+        setTimeout(function () {
+          thirdQuestion();
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
-        thirdQuestion();
+        setTimeout(function () {
+          thirdQuestion();
+        }, 1000)
       }
     })
   })
@@ -125,6 +139,7 @@ function secondQuestion() {
 function thirdQuestion() {
 
   questionTitle.innerHTML = questionThree.question;
+  feedback.classList.toggle('hide');
 
   for (var k = 0; k < questionThree.answers.length; k++) {
     buttonAnswers[k].remove()
@@ -144,13 +159,19 @@ function thirdQuestion() {
     button.addEventListener('click', function () {
       if (button.innerText === 'Welsh') {
         // If correct, tell them
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Correct';
-        fourthQuestion();
+        setTimeout(function () {
+          fourthQuestion();
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
-        fourthQuestion();
+        setTimeout(function () {
+          fourthQuestion();
+        }, 1000)
       }
     })
   })
@@ -159,6 +180,7 @@ function thirdQuestion() {
 function fourthQuestion() {
 
   questionTitle.innerHTML = questionFour.question;
+  feedback.classList.toggle('hide');
 
   for (var l = 0; l < questionFour.answers.length; l++) {
     buttonAnswers[l].remove()
@@ -178,13 +200,19 @@ function fourthQuestion() {
     button.addEventListener('click', function () {
       if (button.innerText === 'Watson') {
         // If correct, tell them
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Correct';
-        fifthQuestion();
+        setTimeout(function () {
+          fifthQuestion();
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
-        fifthQuestion();
+        setTimeout(function () {
+          fifthQuestion();
+        }, 1000)
       }
     })
   })
@@ -193,6 +221,7 @@ function fourthQuestion() {
 function fifthQuestion() {
 
   questionTitle.innerHTML = questionFive.question;
+  feedback.classList.toggle('hide');
 
   for (var m = 0; m < questionFive.answers.length; m++) {
     buttonAnswers[m].remove()
@@ -210,13 +239,15 @@ function fifthQuestion() {
 
   buttonAnswersFive.forEach(function (button) {
     button.addEventListener('click', function () {
-      if (button.innerText === 'Corgi') {
+      if (button.innerText === 'Pembroke Welsh Corgi') {
         // If correct, tell them
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Correct';
         endGame();
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
+        feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
         endGame();
       }
@@ -226,6 +257,7 @@ function fifthQuestion() {
 
 function endGame() {
 
+  clearTimeout(timerInterval);
   questionScreen.classList.toggle('hide');
   feedback.classList.toggle('hide');
   endScreen.classList.toggle('hide');
