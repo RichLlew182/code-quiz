@@ -308,10 +308,9 @@ submitButton.addEventListener('click', function (event) {
       score: finalScore.innerText
     }
 
-    if (!existingScore) {
-      localStorage.setItem('highScore', JSON.stringify(scoreAndInitials));
-      console.log('No scores set')
-    }
+    localStorage.setItem('highScore', JSON.stringify(scoreAndInitials));
+    window.location.href = './highscores.html'
+
   }
 
 })
