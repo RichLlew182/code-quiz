@@ -289,6 +289,7 @@ function endGame() {
 
 var submitButton = document.querySelector('#submit');
 var initials = document.querySelector('#initials');
+var clearButton = document.querySelector('#clear')
 
 submitButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -304,6 +305,11 @@ submitButton.addEventListener('click', function (event) {
     localStorage.setItem('final-score', finalScore.innerText);
   }
 
+})
+
+clearButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  localStorage.clear();
 })
 
 // User submits form
