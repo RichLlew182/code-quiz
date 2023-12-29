@@ -244,13 +244,19 @@ function fifthQuestion() {
         // If correct, tell them
         feedback.classList.toggle('hide');
         feedback.innerText = 'Correct';
-        endGame();
+        clearTimeout(timerInterval);
+        setTimeout(function () {
+          endGame();
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
         feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
-        endGame();
+        clearTimeout(timerInterval);
+        setTimeout(function () {
+          endGame();
+        }, 1000)
       }
     })
   })
@@ -258,7 +264,7 @@ function fifthQuestion() {
 
 function endGame() {
 
-  clearTimeout(timerInterval);
+
   questionScreen.classList.toggle('hide');
   feedback.classList.toggle('hide');
   finalScore.innerText = remainingTime;
