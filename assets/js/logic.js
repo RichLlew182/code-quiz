@@ -62,9 +62,6 @@ function firstQuestion() {
     console.log(answerButton);
 
     // Their choice is compared to the correct answer as stored in the question's object
-    // if (answerButton.innerText === 'Richard') {
-    //   answerButton.setAttribute('id', 'correct');
-    // }
 
     var buttonAnswersOne = Array.from(document.querySelectorAll('#choices button'));
     buttonAnswers = buttonAnswersOne;
@@ -92,7 +89,6 @@ function firstQuestion() {
 function secondQuestion() {
 
   questionTitle.innerHTML = questionTwo.question;
-
 
   for (var j = 0; j < questionTwo.answers.length; j++) {
     buttonAnswers[j].remove()
@@ -140,23 +136,98 @@ function thirdQuestion() {
     console.log(answerButtonThree);
   }
 
-  buttonAnswersThree = Array.from(document.querySelectorAll('#choices button'));
+  var buttonAnswersThree = Array.from(document.querySelectorAll('#choices button'));
+  buttonAnswers = buttonAnswersThree;
 
   buttonAnswersThree.forEach(function (button) {
     button.addEventListener('click', function () {
       if (button.innerText === 'Welsh') {
         // If correct, tell them
         feedback.innerText = 'Correct';
-        thirdQuestion();
+        fourthQuestion();
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
         feedback.innerText = 'Wrong';
-        thirdQuestion();
+        fourthQuestion();
       }
     })
   })
 }
+
+function fourthQuestion() {
+
+  questionTitle.innerHTML = questionFour.question;
+
+  for (var l = 0; l < questionFour.answers.length; l++) {
+    buttonAnswers[l].remove()
+
+    var answerButtonFour = document.createElement('button');
+    answerButtonFour.innerText = questionFour.answers[l];
+    answerButtonFour.setAttribute('class', 'answers-four')
+    choices.appendChild(answerButtonFour);
+
+    console.log(answerButtonFour);
+  }
+
+  var buttonAnswersFour = Array.from(document.querySelectorAll('#choices button'));
+  buttonAnswers = buttonAnswersFour;
+
+  buttonAnswersFour.forEach(function (button) {
+    button.addEventListener('click', function () {
+      if (button.innerText === 'Watson') {
+        // If correct, tell them
+        feedback.innerText = 'Correct';
+        fifthQuestion();
+      } else {
+        // If incorrect, tell them AND subtract time from the timer
+        remainingTime = remainingTime - 10;
+        feedback.innerText = 'Wrong';
+        fifthQuestion();
+      }
+    })
+  })
+}
+
+function fifthQuestion() {
+
+  questionTitle.innerHTML = questionFive.question;
+
+  for (var m = 0; m < questionFive.answers.length; m++) {
+    buttonAnswers[m].remove()
+
+    var answerButtonFive = document.createElement('button');
+    answerButtonFive.innerText = questionFive.answers[m];
+    answerButtonFive.setAttribute('class', 'answers-five')
+    choices.appendChild(answerButtonFive);
+
+    console.log(answerButtonFive);
+  }
+
+  var buttonAnswersFive = Array.from(document.querySelectorAll('#choices button'));
+  buttonAnswers = buttonAnswersFive;
+
+  buttonAnswersFive.forEach(function (button) {
+    button.addEventListener('click', function () {
+      if (button.innerText === 'Corgi') {
+        // If correct, tell them
+        feedback.innerText = 'Correct';
+        endGame();
+      } else {
+        // If incorrect, tell them AND subtract time from the timer
+        remainingTime = remainingTime - 10;
+        feedback.innerText = 'Wrong';
+        endGame();
+      }
+    })
+  })
+}
+
+function endGame() {
+
+}
+
+
 
 
 

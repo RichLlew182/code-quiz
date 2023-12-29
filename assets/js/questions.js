@@ -12,3 +12,13 @@ var questionThree = {
   question: 'What is your nationality?',
   answers: ['English', 'Scottish', 'Welsh', 'Irish']
 }
+
+var questionFour = {
+  question: 'What is the name of your dog?',
+  answers: ['Sherlock', 'Moriarty', 'Mycroft', 'Watson']
+}
+
+var questionFive = {
+  question: 'What kind of dog is he?',
+  answers: ['Corgi', 'Chihuahua', 'Great Dane', 'Shiba Inu']
+}
