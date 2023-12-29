@@ -16,6 +16,7 @@ var choices = document.querySelector('#choices');
 var feedback = document.querySelector('#feedback');
 var remainingTime = 75;
 var timer = document.querySelector('#time');
+var buttonAnswers = [];
 
 
 //  Click the start button:
@@ -41,65 +42,123 @@ startButton.addEventListener('click', function () {
 
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
-  questionTitle.innerHTML = questionOne.question;
+  firstQuestion()
 
 
 })
 
-for (var i = 0; i < questionOne.answers.length; i++) {
 
-  var answerButton = document.createElement('button');
-  answerButton.innerText = questionOne.answers[i];
-  answerButton.setAttribute('class', 'answers')
-  choices.appendChild(answerButton);
+function firstQuestion() {
 
-  console.log(answerButton);
+  questionTitle.innerHTML = questionOne.question;
 
-  // Their choice is compared to the correct answer as stored in the question's object
-  // if (answerButton.innerText === 'Richard') {
-  //   answerButton.setAttribute('id', 'correct');
-  // }
+  for (var i = 0; i < questionOne.answers.length; i++) {
+
+    var answerButton = document.createElement('button');
+    answerButton.innerText = questionOne.answers[i];
+    answerButton.setAttribute('class', 'answers-one')
+    choices.appendChild(answerButton);
+
+    console.log(answerButton);
+
+    // Their choice is compared to the correct answer as stored in the question's object
+    // if (answerButton.innerText === 'Richard') {
+    //   answerButton.setAttribute('id', 'correct');
+    // }
+
+    var buttonAnswersOne = Array.from(document.querySelectorAll('#choices button'));
+    buttonAnswers = buttonAnswersOne;
+
+  }
+
+  buttonAnswersOne.forEach(function (button) {
+    button.addEventListener('click', function () {
+      feedback.classList.toggle('hide')
+      if (button.innerText === 'Richard') {
+        // If correct, tell them
+        feedback.innerText = 'Correct';
+        secondQuestion();
+      } else {
+        // If incorrect, tell them AND subtract time from the timer
+        remainingTime = remainingTime - 10;
+        feedback.innerText = 'Wrong';
+        secondQuestion();
+      }
+    })
+  })
+
 }
 
-var buttonAnswers = Array.from(document.querySelectorAll('#choices button'));
-console.log(buttonAnswers);
-
-function nextQuestion() {
+function secondQuestion() {
 
   questionTitle.innerHTML = questionTwo.question;
 
+
   for (var j = 0; j < questionTwo.answers.length; j++) {
+    buttonAnswers[j].remove()
 
-    buttonAnswers[j].innerText = questionTwo.answers[j];
+    var answerButtonTwo = document.createElement('button');
+    answerButtonTwo.innerText = questionTwo.answers[j];
+    answerButtonTwo.setAttribute('class', 'answers-two')
+    choices.appendChild(answerButtonTwo);
 
-    console.log(buttonAnswers[j]);
-    // Their choice is compared to the correct answer as stored in the question's object
-    // if (buttonAnswers[j].innerText === '35') {
-    //   buttonAnswers[j].setAttribute('id', 'correct');
-    // }
+    console.log(answerButtonTwo);
   }
+
+  var buttonAnswersTwo = Array.from(document.querySelectorAll('#choices button'));
+
+  buttonAnswers = buttonAnswersTwo;
+
+  buttonAnswers.forEach(function (button) {
+    button.addEventListener('click', function () {
+      if (button.innerText === '35') {
+        // If correct, tell them
+        feedback.innerText = 'Correct';
+        thirdQuestion();
+      } else {
+        // If incorrect, tell them AND subtract time from the timer
+        remainingTime = remainingTime - 10;
+        feedback.innerText = 'Wrong';
+        thirdQuestion();
+      }
+    })
+  })
+}
+
+function thirdQuestion() {
+
+  questionTitle.innerHTML = questionThree.question;
+
+  for (var k = 0; k < questionThree.answers.length; k++) {
+    buttonAnswers[k].remove()
+
+    var answerButtonThree = document.createElement('button');
+    answerButtonThree.innerText = questionThree.answers[k];
+    answerButtonThree.setAttribute('class', 'answers-three')
+    choices.appendChild(answerButtonThree);
+
+    console.log(answerButtonThree);
+  }
+
+  buttonAnswersThree = Array.from(document.querySelectorAll('#choices button'));
+
+  buttonAnswersThree.forEach(function (button) {
+    button.addEventListener('click', function () {
+      if (button.innerText === 'Welsh') {
+        // If correct, tell them
+        feedback.innerText = 'Correct';
+        thirdQuestion();
+      } else {
+        // If incorrect, tell them AND subtract time from the timer
+        remainingTime = remainingTime - 10;
+        feedback.innerText = 'Wrong';
+        thirdQuestion();
+      }
+    })
+  })
 }
 
 
-buttonAnswers.forEach(function (button) {
-  button.addEventListener('click', function () {
-    feedback.classList.toggle('hide')
-    if (button.innerText === 'Richard') {
-      // If correct, tell them
-      feedback.innerText = 'Correct';
-      nextQuestion();
-    } else if (button.innerText === '35') {
-      // If correct, tell them
-      feedback.innerText = 'Correct';
-      nextQuestion();
-    } else {
-      // If incorrect, tell them AND subtract time from the timer
-      remainingTime = remainingTime - 10;
-      feedback.innerText = 'Wrong';
-      nextQuestion();
-    }
-  })
-})
 
 
 // For each question:
