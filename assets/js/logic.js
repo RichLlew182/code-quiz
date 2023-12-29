@@ -16,7 +16,7 @@ var choices = document.querySelector('#choices');
 var feedback = document.querySelector('#feedback');
 var endScreen = document.querySelector('#end-screen');
 var finalScore = document.querySelector('#final-score');
-var remainingTime = 35;
+var remainingTime = 75;
 var penalty = 10;
 var timer = document.querySelector('#time');
 var buttonAnswers = [];
@@ -86,14 +86,14 @@ function firstQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           secondQuestion();
-        }, 500)
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - penalty;
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           secondQuestion();
-        }, 500)
+        }, 1000)
       }
     })
   })
@@ -128,7 +128,7 @@ function secondQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           thirdQuestion();
-        }, 500)
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - penalty;
@@ -136,7 +136,7 @@ function secondQuestion() {
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           thirdQuestion();
-        }, 500)
+        }, 1000)
       }
     })
   })
@@ -169,7 +169,7 @@ function thirdQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           fourthQuestion();
-        }, 500)
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - penalty;
@@ -177,7 +177,7 @@ function thirdQuestion() {
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           fourthQuestion();
-        }, 500)
+        }, 1000)
       }
     })
   })
@@ -210,7 +210,7 @@ function fourthQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           fifthQuestion();
-        }, 500)
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - penalty;
@@ -218,7 +218,7 @@ function fourthQuestion() {
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           fifthQuestion();
-        }, 500)
+        }, 1000)
       }
     })
   })
@@ -252,7 +252,7 @@ function fifthQuestion() {
         clearInterval(timerInterval);
         setTimeout(function () {
           endGame();
-        }, 500)
+        }, 1000)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - penalty;
@@ -261,7 +261,7 @@ function fifthQuestion() {
         setTimeout(function () {
           clearInterval(timerInterval);
           endGame();
-        }, 500)
+        }, 1000)
       }
     })
   })
