@@ -25,6 +25,8 @@ startButton.addEventListener('click', function () {
 
   timer.textContent = remainingTime;
 
+  // Timer starts
+
   var timerInterval = setInterval(function () {
     remainingTime--;
     timer.textContent = remainingTime;
@@ -34,6 +36,8 @@ startButton.addEventListener('click', function () {
     }
 
   }, 1000)
+
+  // The first question appears (with its answers)
 
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
@@ -51,39 +55,55 @@ for (var i = 0; i < questionOne.answers.length; i++) {
 
   console.log(answerButton);
 
-  if (answerButton.innerText === 'Richard') {
-    answerButton.setAttribute('id', 'correct');
+  // Their choice is compared to the correct answer as stored in the question's object
+  // if (answerButton.innerText === 'Richard') {
+  //   answerButton.setAttribute('id', 'correct');
+  // }
+}
+
+var buttonAnswers = Array.from(document.querySelectorAll('#choices button'));
+console.log(buttonAnswers);
+
+function nextQuestion() {
+
+  questionTitle.innerHTML = questionTwo.question;
+
+  for (var j = 0; j < questionTwo.answers.length; j++) {
+
+    buttonAnswers[j].innerText = questionTwo.answers[j];
+
+    console.log(buttonAnswers[j]);
+    // Their choice is compared to the correct answer as stored in the question's object
+    // if (buttonAnswers[j].innerText === '35') {
+    //   buttonAnswers[j].setAttribute('id', 'correct');
+    // }
   }
 }
 
-var buttonAnswers = document.querySelectorAll('#choices button');
-console.log(buttonAnswers);
 
 buttonAnswers.forEach(function (button) {
   button.addEventListener('click', function () {
     feedback.classList.toggle('hide')
-    if (button.id === 'correct') {
+    if (button.innerText === 'Richard') {
+      // If correct, tell them
       feedback.innerText = 'Correct';
+      nextQuestion();
+    } else if (button.innerText === '35') {
+      // If correct, tell them
+      feedback.innerText = 'Correct';
+      nextQuestion();
     } else {
+      // If incorrect, tell them AND subtract time from the timer
       remainingTime = remainingTime - 10;
       feedback.innerText = 'Wrong';
+      nextQuestion();
     }
   })
 })
 
 
-
-
-
-
-// TODO Timer starts
-// TODO The first question appears (with its answers)
-
 // For each question:
 // User clicks an answer
-// Their choice is compared to the correct answer as stored in the question's object
-// If correct, tell them
-// If incorrect, tell them AND subtract time from the timer
 // Optional: play a sound for correct or incorrect
 // Either way, the question disappears after a few seconds and the next question appears
 

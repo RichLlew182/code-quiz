@@ -4,6 +4,6 @@ var questionOne = {
 }
 
 var questionTwo = {
-  question: 'What is your name?',
-  answers: ['Richard', 'Katie', 'Michael', 'Andy']
+  question: 'What is your age?',
+  answers: ['25', '35', '40', '45']
 }
