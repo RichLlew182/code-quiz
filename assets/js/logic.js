@@ -14,6 +14,7 @@ var questionScreen = document.querySelector('#questions');
 var questionTitle = document.querySelector('#question-title');
 var choices = document.querySelector('#choices');
 var feedback = document.querySelector('#feedback');
+var endScreen = document.querySelector('#end-screen');
 var remainingTime = 75;
 var timer = document.querySelector('#time');
 var buttonAnswers = [];
@@ -34,6 +35,7 @@ startButton.addEventListener('click', function () {
 
     if (remainingTime === 0) {
       clearInterval(timerInterval);
+      endGame();
     }
 
   }, 1000)
@@ -43,7 +45,6 @@ startButton.addEventListener('click', function () {
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
   firstQuestion()
-
 
 })
 
@@ -224,6 +225,10 @@ function fifthQuestion() {
 }
 
 function endGame() {
+
+  questionScreen.classList.toggle('hide');
+  feedback.classList.toggle('hide');
+  endScreen.classList.toggle('hide');
 
 }
 

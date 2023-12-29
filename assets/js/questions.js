@@ -20,5 +20,5 @@ var questionFour = {
 
 var questionFive = {
   question: 'What kind of dog is he?',
-  answers: ['Corgi', 'Chihuahua', 'Great Dane', 'Shiba Inu']
+  answers: ['Pembroke Welsh Corgi', 'Chihuahua', 'Great Dane', 'Shiba Inu']
 }
