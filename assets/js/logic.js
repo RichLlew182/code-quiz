@@ -63,12 +63,14 @@ buttonAnswers.forEach(function (button) {
   button.addEventListener('click', function () {
     feedback.classList.toggle('hide')
     if (button.id === 'correct') {
-      feedback.innerText = 'Correct'
+      feedback.innerText = 'Correct';
     } else {
-      feedback.innerText = 'Wrong'
+      remainingTime = remainingTime - 10;
+      feedback.innerText = 'Wrong';
     }
   })
 })
+
 
 
 
