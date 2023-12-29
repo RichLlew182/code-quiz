@@ -81,14 +81,14 @@ function firstQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           secondQuestion();
-        }, 1000)
+        }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           secondQuestion();
-        }, 1000)
+        }, 500)
       }
     })
   })
@@ -123,7 +123,7 @@ function secondQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           thirdQuestion();
-        }, 1000)
+        }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
@@ -131,7 +131,7 @@ function secondQuestion() {
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           thirdQuestion();
-        }, 1000)
+        }, 500)
       }
     })
   })
@@ -164,7 +164,7 @@ function thirdQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           fourthQuestion();
-        }, 1000)
+        }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
@@ -172,7 +172,7 @@ function thirdQuestion() {
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           fourthQuestion();
-        }, 1000)
+        }, 500)
       }
     })
   })
@@ -205,7 +205,7 @@ function fourthQuestion() {
         feedback.innerText = 'Correct';
         setTimeout(function () {
           fifthQuestion();
-        }, 1000)
+        }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
@@ -213,7 +213,7 @@ function fourthQuestion() {
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           fifthQuestion();
-        }, 1000)
+        }, 500)
       }
     })
   })
@@ -244,19 +244,19 @@ function fifthQuestion() {
         // If correct, tell them
         feedback.classList.toggle('hide');
         feedback.innerText = 'Correct';
-        clearTimeout(timerInterval);
+        clearInterval(timerInterval);
         setTimeout(function () {
           endGame();
-        }, 1000)
+        }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
         remainingTime = remainingTime - 10;
         feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
-        clearTimeout(timerInterval);
         setTimeout(function () {
+          clearInterval(timerInterval);
           endGame();
-        }, 1000)
+        }, 500)
       }
     })
   })
