@@ -47,7 +47,6 @@ startButton.addEventListener('click', function () {
 
   }, 1000)
 
-
   // The first question appears (with its answers)
 
   startScreen.classList.add('hide')
@@ -57,6 +56,10 @@ startButton.addEventListener('click', function () {
 
 })
 
+// For each question:
+// User clicks an answer
+// Optional: play a sound for correct or incorrect
+// Either way, the question disappears after a few seconds and the next question appears
 
 function firstQuestion() {
 
@@ -269,25 +272,39 @@ function fifthQuestion() {
 
 function endGame() {
 
+  // After the last question:
+  // Timer stops
+  // Question disappears
+  // Form appears for user to enter their initials
+  // Display their score
 
   questionScreen.classList.toggle('hide');
   feedback.style.display = 'none'
   finalScore.innerText = remainingTime;
   endScreen.classList.toggle('hide');
+
 }
 
+// endScreen.classList.toggle('hide');
 
+var submitButton = document.querySelector('#submit');
+var initials = document.querySelector('#initials');
 
-// For each question:
-// User clicks an answer
-// Optional: play a sound for correct or incorrect
-// Either way, the question disappears after a few seconds and the next question appears
+submitButton.addEventListener('click', function (event) {
+  event.preventDefault();
 
-// After the last question:
-// Timer stops
-// Question disappears
-// Form appears for user to enter their initials
-// Display their score
+  if (!initials.value) {
+    alert('You must enter your initials')
+  } else if (initials.value.length > 3) {
+    alert('Must be 3 or less characters')
+  } else {
+    console.log(initials.value);
+
+    localStorage.setItem('initials', initials.value);
+    localStorage.setItem('final-score', finalScore.innerText);
+  }
+
+})
 
 // User submits form
 // Initials and score get stored in local storage
