@@ -16,7 +16,8 @@ var choices = document.querySelector('#choices');
 var feedback = document.querySelector('#feedback');
 var endScreen = document.querySelector('#end-screen');
 var finalScore = document.querySelector('#final-score');
-var remainingTime = 75;
+var remainingTime = 35;
+var penalty = 10;
 var timer = document.querySelector('#time');
 var buttonAnswers = [];
 var timerInterval;
@@ -35,7 +36,11 @@ startButton.addEventListener('click', function () {
     remainingTime--;
     timer.textContent = remainingTime;
 
-    if (remainingTime === 0) {
+    if (remainingTime < 10) {
+      penalty = (remainingTime - 1);
+    }
+
+    if (remainingTime <= 0) {
       clearInterval(timerInterval);
       endGame();
     }
@@ -84,7 +89,7 @@ function firstQuestion() {
         }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - 10;
+        remainingTime = remainingTime - penalty;
         feedback.innerText = 'Wrong';
         setTimeout(function () {
           secondQuestion();
@@ -126,7 +131,7 @@ function secondQuestion() {
         }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - 10;
+        remainingTime = remainingTime - penalty;
         feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
         setTimeout(function () {
@@ -167,7 +172,7 @@ function thirdQuestion() {
         }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - 10;
+        remainingTime = remainingTime - penalty;
         feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
         setTimeout(function () {
@@ -208,7 +213,7 @@ function fourthQuestion() {
         }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - 10;
+        remainingTime = remainingTime - penalty;
         feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
         setTimeout(function () {
@@ -250,7 +255,7 @@ function fifthQuestion() {
         }, 500)
       } else {
         // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - 10;
+        remainingTime = remainingTime - penalty;
         feedback.classList.toggle('hide');
         feedback.innerText = 'Wrong';
         setTimeout(function () {
@@ -266,7 +271,7 @@ function endGame() {
 
 
   questionScreen.classList.toggle('hide');
-  feedback.classList.toggle('hide');
+  feedback.style.display = 'none'
   finalScore.innerText = remainingTime;
   endScreen.classList.toggle('hide');
 }
