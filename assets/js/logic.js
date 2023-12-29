@@ -291,7 +291,7 @@ var submitButton = document.querySelector('#submit');
 var initials = document.querySelector('#initials');
 var highscores = [];
 var existingInitials = localStorage.getItem('initials');
-var existingScore = JSON.parse(localStorage.getItem('highScore'));
+var existingScore = localStorage.getItem('highScore');
 
 submitButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -303,12 +303,15 @@ submitButton.addEventListener('click', function (event) {
   } else {
     console.log(initials.value);
 
-    var highScore = {
+    var scoreAndInitials = {
       initials: initials.value,
       score: finalScore.innerText
     }
 
-    localStorage.setItem('highScore', JSON.stringify(highScore))
+    if (!existingScore) {
+      localStorage.setItem('highScore', JSON.stringify(scoreAndInitials));
+      console.log('No scores set')
+    }
   }
 
 })
