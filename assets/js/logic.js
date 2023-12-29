@@ -289,7 +289,9 @@ function endGame() {
 
 var submitButton = document.querySelector('#submit');
 var initials = document.querySelector('#initials');
-var clearButton = document.querySelector('#clear')
+var highscores = [];
+var existingInitials = localStorage.getItem('initials');
+var existingScore = JSON.parse(localStorage.getItem('highScore'));
 
 submitButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -301,16 +303,17 @@ submitButton.addEventListener('click', function (event) {
   } else {
     console.log(initials.value);
 
-    localStorage.setItem('initials', initials.value);
-    localStorage.setItem('final-score', finalScore.innerText);
+    var highScore = {
+      initials: initials.value,
+      score: finalScore.innerText
+    }
+
+    localStorage.setItem('highScore', JSON.stringify(highScore))
   }
 
 })
 
-clearButton.addEventListener('click', function (event) {
-  event.preventDefault();
-  localStorage.clear();
-})
+
 
 // User submits form
 // Initials and score get stored in local storage
