@@ -15,6 +15,7 @@ var questionTitle = document.querySelector('#question-title');
 var choices = document.querySelector('#choices');
 var feedback = document.querySelector('#feedback');
 var endScreen = document.querySelector('#end-screen');
+var finalScore = document.querySelector('#final-score');
 var remainingTime = 75;
 var timer = document.querySelector('#time');
 var buttonAnswers = [];
@@ -260,12 +261,9 @@ function endGame() {
   clearTimeout(timerInterval);
   questionScreen.classList.toggle('hide');
   feedback.classList.toggle('hide');
+  finalScore.innerText = remainingTime;
   endScreen.classList.toggle('hide');
-
 }
-
-
-
 
 
 
