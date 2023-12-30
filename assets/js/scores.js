@@ -20,7 +20,6 @@ if (localStoredScore) {
 
   }
 
-
 }
 
 clearButton.addEventListener('click', function (event) {
