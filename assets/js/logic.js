@@ -291,6 +291,7 @@ var submitButton = document.querySelector('#submit');
 var initials = document.querySelector('#initials');
 var existingStoredScore = JSON.parse(localStorage.getItem('scoreAndInitials')) || [];
 
+// User submits form
 submitButton.addEventListener('click', function (event) {
   event.preventDefault();
 
@@ -306,17 +307,12 @@ submitButton.addEventListener('click', function (event) {
     }
 
     existingStoredScore.push(newScore);
+    // Initials and score get stored in local storage
     localStorage.setItem('scoreAndInitials', JSON.stringify(existingStoredScore));
 
-
+    // User is taken to the high scores page
     window.location.href = './highscores.html'
 
   }
 
 })
-
-// User submits form
-// Initials and score get stored in local storage
-// User is taken to the high scores page
-// High scores are listed, sorted highest to lowest
-// User has option to take the quiz again
