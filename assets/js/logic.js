@@ -306,8 +306,10 @@ submitButton.addEventListener('click', function (event) {
       score: finalScore.innerText
     }
 
-    localStorage.setItem('scoreAndInitials', JSON.stringify(newScore));
-    window.location.href = './highscores.html'
+    scoreArray.push(newScore);
+
+    localStorage.setItem('scoreAndInitials', JSON.stringify(scoreArray));
+    // window.location.href = './highscores.html'
 
   }
 

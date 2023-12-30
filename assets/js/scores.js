@@ -1,5 +1,5 @@
 var clearButton = document.querySelector('#clear');
-var highScoresList = document.querySelector('#highscores')
+var highScoresList = document.querySelector('#highscores');
 
 clearButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -11,13 +11,17 @@ clearButton.addEventListener('click', function (event) {
 
 })
 
-var highScores = document.querySelector('#highscores');
-var li = document.createElement('li');
 var localStoredScore = localStorage.getItem('scoreAndInitials');
 
 if (localStoredScore) {
 
   localStoredScore = JSON.parse(localStoredScore);
-  li.innerText = `${localStoredScore.initials} - ${localStoredScore.score}`
-  highScores.append(li);
+
+  for (var i = 0; i < localStoredScore.length; i++) {
+    var li = document.createElement('li');
+    li.innerText = `${localStoredScore[i].initials} - ${localStoredScore[i].score}`
+    highScoresList.append(li);
+
+  }
+
 }
