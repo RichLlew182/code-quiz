@@ -16,7 +16,7 @@ var choices = document.querySelector('#choices');
 var feedback = document.querySelector('#feedback');
 var endScreen = document.querySelector('#end-screen');
 var finalScore = document.querySelector('#final-score');
-var remainingTime = 75;
+var remainingTime = 35;
 var penalty = 10;
 var timer = document.querySelector('#time');
 var buttonAnswers = [];
@@ -282,11 +282,14 @@ function endGame() {
   // Question disappears
   // Form appears for user to enter their initials
   // Display their score
+  if (questionScreen.className === '') {
+    questionScreen.classList.toggle('hide')
+  }
 
-  questionScreen.classList.toggle('hide');
   feedback.style.display = 'none'
-  finalScore.innerText = remainingTime;
   endScreen.classList.toggle('hide');
+  finalScore.innerText = remainingTime;
+
 
 }
 
