@@ -286,6 +286,10 @@ function endGame() {
     questionScreen.classList.toggle('hide')
   }
 
+  if (endScreen.className === '') {
+    endScreen.classList.toggle('hide');
+  }
+
   feedback.style.display = 'none'
   endScreen.classList.toggle('hide');
   finalScore.innerText = remainingTime;
