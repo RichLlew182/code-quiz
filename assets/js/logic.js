@@ -285,8 +285,6 @@ function endGame() {
 
 }
 
-// endScreen.classList.toggle('hide');
-
 var submitButton = document.querySelector('#submit');
 var initials = document.querySelector('#initials');
 var existingStoredScore = JSON.parse(localStorage.getItem('scoreAndInitials')) || [];
@@ -295,14 +293,14 @@ var existingStoredScore = JSON.parse(localStorage.getItem('scoreAndInitials')) |
 submitButton.addEventListener('click', function (event) {
   event.preventDefault();
 
-  if (!initials.value) {
+  if (!initials.value.trim()) {
     alert('You must enter your initials')
-  } else if (initials.value.length > 3) {
+  } else if (initials.value.trim().length > 3) {
     alert('Must be 3 or fewer characters')
   } else {
 
     var newScore = {
-      initials: initials.value,
+      initials: initials.value.trim(),
       score: finalScore.innerText
     }
 
