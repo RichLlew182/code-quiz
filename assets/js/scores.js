@@ -1,16 +1,5 @@
 var clearButton = document.querySelector('#clear');
 var highScoresList = document.querySelector('#highscores');
-
-clearButton.addEventListener('click', function (event) {
-  event.preventDefault();
-  localStorage.clear();
-
-  for (var i = 0; i < highScoresList.childElementCount; i++) {
-    highScoresList.removeChild(highScoresList.lastElementChild)
-  }
-
-})
-
 var localStoredScore = localStorage.getItem('scoreAndInitials');
 
 if (localStoredScore) {
@@ -25,3 +14,13 @@ if (localStoredScore) {
   }
 
 }
+
+clearButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  localStorage.clear();
+
+  while (highScoresList.firstChild) {
+    highScoresList.removeChild(highScoresList.firstChild)
+  }
+
+})
