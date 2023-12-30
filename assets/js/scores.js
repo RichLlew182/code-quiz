@@ -2,16 +2,27 @@ var clearButton = document.querySelector('#clear');
 var highScoresList = document.querySelector('#highscores');
 var localStoredScore = localStorage.getItem('scoreAndInitials');
 
+
 if (localStoredScore) {
+
 
   localStoredScore = JSON.parse(localStoredScore);
 
+  localStoredScore.sort(function (a, b) {
+    return b.score - a.score;
+  })
+
+
   for (var i = 0; i < localStoredScore.length; i++) {
+
+
+
     var li = document.createElement('li');
     li.innerText = `${localStoredScore[i].initials} - ${localStoredScore[i].score}`
     highScoresList.append(li);
 
   }
+
 
 }
 
