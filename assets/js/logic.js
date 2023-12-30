@@ -289,9 +289,8 @@ function endGame() {
 
 var submitButton = document.querySelector('#submit');
 var initials = document.querySelector('#initials');
-var highscores = [];
-var existingInitials = localStorage.getItem('initials');
-var existingScore = localStorage.getItem('highScore');
+var existingStoredScore = JSON.parse(localStorage.getItem('scoreAndInitials'));
+var scoreArray = [];
 
 submitButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -299,16 +298,15 @@ submitButton.addEventListener('click', function (event) {
   if (!initials.value) {
     alert('You must enter your initials')
   } else if (initials.value.length > 3) {
-    alert('Must be 3 or less characters')
+    alert('Must be 3 or fewer characters')
   } else {
-    console.log(initials.value);
 
-    var scoreAndInitials = {
+    var newScore = {
       initials: initials.value,
       score: finalScore.innerText
     }
 
-    localStorage.setItem('highScore', JSON.stringify(scoreAndInitials));
+    localStorage.setItem('scoreAndInitials', JSON.stringify(newScore));
     window.location.href = './highscores.html'
 
   }
