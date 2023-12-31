@@ -22,7 +22,9 @@ var timer = document.querySelector('#time');
 var buttonAnswers = [];
 var timerInterval;
 var correctAudio = new Audio('./assets/sfx/correct.wav');
-var wrongAudio = new Audio('./assets/sfx/incorrect.wav')
+var wrongAudio = new Audio('./assets/sfx/incorrect.wav');
+
+var i = 0;
 
 //  Click the start button:
 //  Landing page goes away
@@ -52,7 +54,7 @@ startButton.addEventListener('click', function () {
 
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
-  firstQuestion();
+  nextQuestion();
   return timerInterval;
 
 })
@@ -62,23 +64,44 @@ startButton.addEventListener('click', function () {
 // Optional: play a sound for correct or incorrect
 // Either way, the question disappears after a few seconds and the next question appears
 
+
+function nextQuestion() {
+
+  while (i < 1) {
+
+    questionTitle.innerHTML = qAndAs[i].question;
+
+    for (var j = 0; j < qAndAs[i].answers.length; j++) {
+      var createButtons = document.createElement('button');
+      createButtons.innerText = qAndAs[i].answers[j];
+      createButtons.setAttribute('class', 'answers-' + (j + 1));
+      choices.appendChild(createButtons);
+    }
+
+    buttonAnswers = Array.from(document.querySelectorAll('#choices button'));
+
+    i++;
+  }
+
+}
+
 function firstQuestion() {
 
-  questionTitle.innerHTML = questionOne.question;
+  // questionTitle.innerHTML = questionOne.question;
 
-  for (var i = 0; i < questionOne.answers.length; i++) {
+  // for (var i = 0; i < questionOne.answers.length; i++) {
 
-    var answerButton = document.createElement('button');
-    answerButton.innerText = questionOne.answers[i];
-    answerButton.setAttribute('class', 'answers-one')
-    choices.appendChild(answerButton);
+  //   var answerButton = document.createElement('button');
+  //   answerButton.innerText = questionOne.answers[i];
+  //   answerButton.setAttribute('class', 'answers-one')
+  //   choices.appendChild(answerButton);
 
-    // Their choice is compared to the correct answer as stored in the question's object
+  //   // Their choice is compared to the correct answer as stored in the question's object
 
-    var buttonAnswersOne = Array.from(document.querySelectorAll('#choices button'));
-    buttonAnswers = buttonAnswersOne;
+  //   var buttonAnswersOne = Array.from(document.querySelectorAll('#choices button'));
+  //   buttonAnswers = buttonAnswersOne;
 
-  }
+  // }
 
   buttonAnswersOne.forEach(function (button) {
     button.addEventListener('click', function () {
