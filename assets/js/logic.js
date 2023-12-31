@@ -39,7 +39,7 @@ startButton.addEventListener('click', function () {
     remainingTime--;
     timer.textContent = remainingTime;
 
-    if (remainingTime < 10) {
+    if (remainingTime <= 10) {
       penalty = (remainingTime - 1);
     }
 
@@ -112,6 +112,8 @@ function nextQuestion() {
         if (button.innerText === 'Create a division or a section') {
           correctAudio.play();
           feedback.innerText = 'Correct';
+          // After the last question:
+          // Timer stops
           clearInterval(timerInterval);
           feedback.classList.toggle('hide')
           setTimeout(function () {
@@ -121,8 +123,10 @@ function nextQuestion() {
           remainingTime = remainingTime - penalty;
           wrongAudio.play();
           feedback.innerText = 'Wrong';
+          feedback.classList.toggle('hide')
           setTimeout(function () {
-            feedback.classList.toggle('hide')
+            // After the last question:
+            // Timer stops
             clearInterval(timerInterval);
             endGame();
           }, 1000)
@@ -137,15 +141,13 @@ function nextQuestion() {
 
 function endGame() {
 
-  // After the last question:
-  // Timer stops
   // Question disappears
-  // Form appears for user to enter their initials
   // Display their score
   if (questionScreen.className === '') {
     questionScreen.classList.toggle('hide')
   }
 
+  // Form appears for user to enter their initials
   if (endScreen.className === '') {
     endScreen.classList.toggle('hide');
   }
