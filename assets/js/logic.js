@@ -24,7 +24,7 @@ var timerInterval;
 var correctAudio = new Audio('./assets/sfx/correct.wav');
 var wrongAudio = new Audio('./assets/sfx/incorrect.wav');
 
-var i = 0;
+var i = -1;
 
 //  Click the start button:
 //  Landing page goes away
@@ -67,23 +67,48 @@ startButton.addEventListener('click', function () {
 
 function nextQuestion() {
 
-  while (i < 1) {
+  i++
 
-    questionTitle.innerHTML = qAndAs[i].question;
+  questionTitle.innerHTML = qAndAs[i].question;
 
-    for (var j = 0; j < qAndAs[i].answers.length; j++) {
-      var createButtons = document.createElement('button');
-      createButtons.innerText = qAndAs[i].answers[j];
-      createButtons.setAttribute('class', 'answers-' + (j + 1));
-      choices.appendChild(createButtons);
-    }
-
-    buttonAnswers = Array.from(document.querySelectorAll('#choices button'));
-
-    i++;
+  for (var j = 0; j < qAndAs[i].answers.length; j++) {
+    var createButtons = document.createElement('button');
+    createButtons.innerText = qAndAs[i].answers[j];
+    createButtons.setAttribute('class', 'answers-' + (j + 1));
+    choices.appendChild(createButtons);
   }
 
+  buttonAnswers = Array.from(document.querySelectorAll('#choices button'));
+
+  buttonAnswers.forEach(function (button) {
+    button.addEventListener('click', function () {
+
+      feedback.classList.toggle('hide')
+      if (button.innerText === 'HyperText Markup Language' ||
+        button.innerText === 'JavaScript' ||
+        button.innerText === 'Cascading Style Sheets' ||
+        button.innerText === 'Git' ||
+        button.innerText === 'Create a division or a section') {
+        // If correct, tell them
+        correctAudio.play();
+        feedback.innerText = 'Correct';
+        setTimeout(function () {
+          nextQuestion();
+        }, 1000)
+      } else {
+        // If incorrect, tell them AND subtract time from the timer
+        remainingTime = remainingTime - penalty;
+        wrongAudio.play();
+        feedback.innerText = 'Wrong';
+        setTimeout(function () {
+          nextQuestion();
+        }, 1000)
+      }
+    })
+  })
+
 }
+
 
 function firstQuestion() {
 
