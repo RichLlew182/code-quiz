@@ -100,7 +100,7 @@ function nextQuestion() {
           }, 1000)
         } else {
           // If incorrect, tell them AND subtract time from the timer
-          remainingTime = remainingTime - penalty;
+          remainingTime -= penalty;
           wrongAudio.play();
           feedback.innerText = 'Wrong';
           setTimeout(function () {
@@ -120,7 +120,7 @@ function nextQuestion() {
             endGame();
           }, 1000)
         } else {
-          remainingTime = remainingTime - penalty;
+          remainingTime -= penalty;
           wrongAudio.play();
           feedback.innerText = 'Wrong';
           feedback.classList.toggle('hide')
