@@ -16,7 +16,7 @@ var choices = document.querySelector('#choices');
 var feedback = document.querySelector('#feedback');
 var endScreen = document.querySelector('#end-screen');
 var finalScore = document.querySelector('#final-score');
-var remainingTime = 75;
+var remainingTime = 35;
 var penalty = 10;
 var timer = document.querySelector('#time');
 var buttonAnswers = [];
@@ -113,6 +113,7 @@ function nextQuestion() {
           correctAudio.play();
           feedback.innerText = 'Correct';
           clearInterval(timerInterval);
+          feedback.classList.toggle('hide')
           setTimeout(function () {
             endGame();
           }, 1000)
@@ -120,8 +121,9 @@ function nextQuestion() {
           remainingTime = remainingTime - penalty;
           wrongAudio.play();
           feedback.innerText = 'Wrong';
-          clearInterval(timerInterval);
           setTimeout(function () {
+            feedback.classList.toggle('hide')
+            clearInterval(timerInterval);
             endGame();
           }, 1000)
         }
@@ -148,10 +150,8 @@ function endGame() {
     endScreen.classList.toggle('hide');
   }
 
-  feedback.style.display = 'none'
   endScreen.classList.toggle('hide');
   finalScore.innerText = remainingTime;
-
 
 }
 
