@@ -55,7 +55,7 @@ startButton.addEventListener('click', function () {
   startScreen.classList.add('hide')
   questionScreen.classList.toggle('hide');
   nextQuestion();
-  return timerInterval;
+  return remainingTime;
 
 })
 
@@ -63,7 +63,6 @@ startButton.addEventListener('click', function () {
 // User clicks an answer
 // Optional: play a sound for correct or incorrect
 // Either way, the question disappears after a few seconds and the next question appears
-
 
 function nextQuestion() {
 
@@ -86,7 +85,6 @@ function nextQuestion() {
     button.addEventListener('click', function () {
 
       feedback.classList.toggle('hide')
-
 
       if (i < 4) {
         if (button.innerText === 'HyperText Markup Language' ||
@@ -119,6 +117,7 @@ function nextQuestion() {
             endGame();
           }, 1000)
         } else {
+          remainingTime = remainingTime - penalty;
           wrongAudio.play();
           feedback.innerText = 'Wrong';
           clearInterval(timerInterval);
@@ -132,220 +131,6 @@ function nextQuestion() {
     })
   })
 
-}
-
-
-// function firstQuestion() {
-
-// questionTitle.innerHTML = questionOne.question;
-
-// for (var i = 0; i < questionOne.answers.length; i++) {
-
-//   var answerButton = document.createElement('button');
-//   answerButton.innerText = questionOne.answers[i];
-//   answerButton.setAttribute('class', 'answers-one')
-//   choices.appendChild(answerButton);
-
-//   // Their choice is compared to the correct answer as stored in the question's object
-
-//   var buttonAnswersOne = Array.from(document.querySelectorAll('#choices button'));
-//   buttonAnswers = buttonAnswersOne;
-
-// }
-
-//   buttonAnswersOne.forEach(function (button) {
-//     button.addEventListener('click', function () {
-//       feedback.classList.toggle('hide')
-//       if (button.innerText === 'HyperText Markup Language') {
-//         // If correct, tell them
-//         correctAudio.play();
-//         feedback.innerText = 'Correct';
-//         setTimeout(function () {
-//           secondQuestion();
-//         }, 1000)
-//       } else {
-//         // If incorrect, tell them AND subtract time from the timer
-//         remainingTime = remainingTime - penalty;
-//         wrongAudio.play();
-//         feedback.innerText = 'Wrong';
-//         setTimeout(function () {
-//           secondQuestion();
-//         }, 1000)
-//       }
-//     })
-//   })
-
-// }
-
-function secondQuestion() {
-
-  questionTitle.innerHTML = questionTwo.question;
-  feedback.classList.toggle('hide');
-
-  for (var j = 0; j < questionTwo.answers.length; j++) {
-    buttonAnswers[j].remove()
-
-    var answerButtonTwo = document.createElement('button');
-    answerButtonTwo.innerText = questionTwo.answers[j];
-    answerButtonTwo.setAttribute('class', 'answers-two')
-    choices.appendChild(answerButtonTwo);
-
-  }
-
-  var buttonAnswersTwo = Array.from(document.querySelectorAll('#choices button'));
-
-  buttonAnswers = buttonAnswersTwo;
-
-  buttonAnswers.forEach(function (button) {
-    button.addEventListener('click', function () {
-      if (button.innerText === 'JavaScript') {
-        // If correct, tell them
-        feedback.classList.toggle('hide');
-        correctAudio.play();
-        feedback.innerText = 'Correct';
-        setTimeout(function () {
-          thirdQuestion();
-        }, 1000)
-      } else {
-        // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - penalty;
-        feedback.classList.toggle('hide');
-        wrongAudio.play();
-        feedback.innerText = 'Wrong';
-        setTimeout(function () {
-          thirdQuestion();
-        }, 1000)
-      }
-    })
-  })
-}
-
-function thirdQuestion() {
-
-  questionTitle.innerHTML = questionThree.question;
-  feedback.classList.toggle('hide');
-
-  for (var k = 0; k < questionThree.answers.length; k++) {
-    buttonAnswers[k].remove()
-
-    var answerButtonThree = document.createElement('button');
-    answerButtonThree.innerText = questionThree.answers[k];
-    answerButtonThree.setAttribute('class', 'answers-three')
-    choices.appendChild(answerButtonThree);
-
-  }
-
-  var buttonAnswersThree = Array.from(document.querySelectorAll('#choices button'));
-  buttonAnswers = buttonAnswersThree;
-
-  buttonAnswersThree.forEach(function (button) {
-    button.addEventListener('click', function () {
-      if (button.innerText === 'Cascading Style Sheets') {
-        // If correct, tell them
-        feedback.classList.toggle('hide');
-        correctAudio.play();
-        feedback.innerText = 'Correct';
-        setTimeout(function () {
-          fourthQuestion();
-        }, 1000)
-      } else {
-        // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - penalty;
-        feedback.classList.toggle('hide');
-        wrongAudio.play();
-        feedback.innerText = 'Wrong';
-        setTimeout(function () {
-          fourthQuestion();
-        }, 1000)
-      }
-    })
-  })
-}
-
-function fourthQuestion() {
-
-  questionTitle.innerHTML = questionFour.question;
-  feedback.classList.toggle('hide');
-
-  for (var l = 0; l < questionFour.answers.length; l++) {
-    buttonAnswers[l].remove()
-
-    var answerButtonFour = document.createElement('button');
-    answerButtonFour.innerText = questionFour.answers[l];
-    answerButtonFour.setAttribute('class', 'answers-four')
-    choices.appendChild(answerButtonFour);
-
-  }
-
-  var buttonAnswersFour = Array.from(document.querySelectorAll('#choices button'));
-  buttonAnswers = buttonAnswersFour;
-
-  buttonAnswersFour.forEach(function (button) {
-    button.addEventListener('click', function () {
-      if (button.innerText === 'Git') {
-        // If correct, tell them
-        feedback.classList.toggle('hide');
-        correctAudio.play();
-        feedback.innerText = 'Correct';
-        setTimeout(function () {
-          fifthQuestion();
-        }, 1000)
-      } else {
-        // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - penalty;
-        feedback.classList.toggle('hide');
-        wrongAudio.play();
-        feedback.innerText = 'Wrong';
-        setTimeout(function () {
-          fifthQuestion();
-        }, 1000)
-      }
-    })
-  })
-}
-
-function fifthQuestion() {
-
-  questionTitle.innerHTML = questionFive.question;
-  feedback.classList.toggle('hide');
-
-  for (var m = 0; m < questionFive.answers.length; m++) {
-    buttonAnswers[m].remove()
-
-    var answerButtonFive = document.createElement('button');
-    answerButtonFive.innerText = questionFive.answers[m];
-    answerButtonFive.setAttribute('class', 'answers-five')
-    choices.appendChild(answerButtonFive);
-
-  }
-
-  var buttonAnswersFive = Array.from(document.querySelectorAll('#choices button'));
-  buttonAnswers = buttonAnswersFive;
-
-  buttonAnswersFive.forEach(function (button) {
-    button.addEventListener('click', function () {
-      if (button.innerText === 'Create a division or a section') {
-        // If correct, tell them
-        feedback.classList.toggle('hide');
-        correctAudio.play();
-        feedback.innerText = 'Correct';
-        clearInterval(timerInterval);
-        setTimeout(function () {
-          endGame();
-        }, 1000)
-      } else {
-        // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - penalty;
-        feedback.classList.toggle('hide');
-        wrongAudio.play();
-        feedback.innerText = 'Wrong';
-        setTimeout(function () {
-          clearInterval(timerInterval);
-          endGame();
-        }, 1000)
-      }
-    })
-  })
 }
 
 function endGame() {
