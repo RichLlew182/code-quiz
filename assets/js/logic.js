@@ -87,28 +87,48 @@ function nextQuestion() {
 
       feedback.classList.toggle('hide')
 
-      if (button.innerText === 'HyperText Markup Language' ||
-        button.innerText === 'JavaScript' ||
-        button.innerText === 'Cascading Style Sheets' ||
-        button.innerText === 'Git' ||
-        button.innerText === 'Create a division or a section') {
-        // If correct, tell them
-        correctAudio.play();
-        feedback.innerText = 'Correct';
-        setTimeout(function () {
-          feedback.classList.toggle('hide')
-          nextQuestion();
-        }, 1000)
-      } else {
-        // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - penalty;
-        wrongAudio.play();
-        feedback.innerText = 'Wrong';
-        setTimeout(function () {
-          feedback.classList.toggle('hide')
-          nextQuestion();
-        }, 1000)
+
+      if (i < 4) {
+        if (button.innerText === 'HyperText Markup Language' ||
+          button.innerText === 'JavaScript' ||
+          button.innerText === 'Cascading Style Sheets' ||
+          button.innerText === 'Git') {
+          // If correct, tell them
+          correctAudio.play();
+          feedback.innerText = 'Correct';
+          setTimeout(function () {
+            feedback.classList.toggle('hide')
+            nextQuestion();
+          }, 1000)
+        } else {
+          // If incorrect, tell them AND subtract time from the timer
+          remainingTime = remainingTime - penalty;
+          wrongAudio.play();
+          feedback.innerText = 'Wrong';
+          setTimeout(function () {
+            feedback.classList.toggle('hide')
+            nextQuestion();
+          }, 1000)
+        }
+      } else if (i = 4) {
+        if (button.innerText === 'Create a division or a section') {
+          correctAudio.play();
+          feedback.innerText = 'Correct';
+          clearInterval(timerInterval);
+          setTimeout(function () {
+            endGame();
+          }, 1000)
+        } else {
+          wrongAudio.play();
+          feedback.innerText = 'Wrong';
+          clearInterval(timerInterval);
+          setTimeout(function () {
+            endGame();
+          }, 1000)
+        }
+
       }
+
     })
   })
 
