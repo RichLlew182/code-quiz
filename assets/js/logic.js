@@ -67,14 +67,16 @@ startButton.addEventListener('click', function () {
 
 function nextQuestion() {
 
-  i++
+  i++;
+  choices.innerHTML = '';
 
   questionTitle.innerHTML = qAndAs[i].question;
 
   for (var j = 0; j < qAndAs[i].answers.length; j++) {
+
     var createButtons = document.createElement('button');
     createButtons.innerText = qAndAs[i].answers[j];
-    createButtons.setAttribute('class', 'answers-' + (j + 1));
+    createButtons.setAttribute('class', 'answers-' + (i + 1));
     choices.appendChild(createButtons);
   }
 
@@ -84,6 +86,7 @@ function nextQuestion() {
     button.addEventListener('click', function () {
 
       feedback.classList.toggle('hide')
+
       if (button.innerText === 'HyperText Markup Language' ||
         button.innerText === 'JavaScript' ||
         button.innerText === 'Cascading Style Sheets' ||
@@ -93,6 +96,7 @@ function nextQuestion() {
         correctAudio.play();
         feedback.innerText = 'Correct';
         setTimeout(function () {
+          feedback.classList.toggle('hide')
           nextQuestion();
         }, 1000)
       } else {
@@ -101,6 +105,7 @@ function nextQuestion() {
         wrongAudio.play();
         feedback.innerText = 'Wrong';
         setTimeout(function () {
+          feedback.classList.toggle('hide')
           nextQuestion();
         }, 1000)
       }
@@ -110,47 +115,47 @@ function nextQuestion() {
 }
 
 
-function firstQuestion() {
+// function firstQuestion() {
 
-  // questionTitle.innerHTML = questionOne.question;
+// questionTitle.innerHTML = questionOne.question;
 
-  // for (var i = 0; i < questionOne.answers.length; i++) {
+// for (var i = 0; i < questionOne.answers.length; i++) {
 
-  //   var answerButton = document.createElement('button');
-  //   answerButton.innerText = questionOne.answers[i];
-  //   answerButton.setAttribute('class', 'answers-one')
-  //   choices.appendChild(answerButton);
+//   var answerButton = document.createElement('button');
+//   answerButton.innerText = questionOne.answers[i];
+//   answerButton.setAttribute('class', 'answers-one')
+//   choices.appendChild(answerButton);
 
-  //   // Their choice is compared to the correct answer as stored in the question's object
+//   // Their choice is compared to the correct answer as stored in the question's object
 
-  //   var buttonAnswersOne = Array.from(document.querySelectorAll('#choices button'));
-  //   buttonAnswers = buttonAnswersOne;
+//   var buttonAnswersOne = Array.from(document.querySelectorAll('#choices button'));
+//   buttonAnswers = buttonAnswersOne;
 
-  // }
+// }
 
-  buttonAnswersOne.forEach(function (button) {
-    button.addEventListener('click', function () {
-      feedback.classList.toggle('hide')
-      if (button.innerText === 'HyperText Markup Language') {
-        // If correct, tell them
-        correctAudio.play();
-        feedback.innerText = 'Correct';
-        setTimeout(function () {
-          secondQuestion();
-        }, 1000)
-      } else {
-        // If incorrect, tell them AND subtract time from the timer
-        remainingTime = remainingTime - penalty;
-        wrongAudio.play();
-        feedback.innerText = 'Wrong';
-        setTimeout(function () {
-          secondQuestion();
-        }, 1000)
-      }
-    })
-  })
+//   buttonAnswersOne.forEach(function (button) {
+//     button.addEventListener('click', function () {
+//       feedback.classList.toggle('hide')
+//       if (button.innerText === 'HyperText Markup Language') {
+//         // If correct, tell them
+//         correctAudio.play();
+//         feedback.innerText = 'Correct';
+//         setTimeout(function () {
+//           secondQuestion();
+//         }, 1000)
+//       } else {
+//         // If incorrect, tell them AND subtract time from the timer
+//         remainingTime = remainingTime - penalty;
+//         wrongAudio.play();
+//         feedback.innerText = 'Wrong';
+//         setTimeout(function () {
+//           secondQuestion();
+//         }, 1000)
+//       }
+//     })
+//   })
 
-}
+// }
 
 function secondQuestion() {
 
